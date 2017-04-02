@@ -1,0 +1,25 @@
+<h2>記事一覧</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>カテゴリ</th>
+      <th>タイトル</th>
+      <th>説明</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @articles.each do |article| %>
+      <tr onclick='window.location="<%= admin_article_path(article) %>";'>
+        <td><%= article.id %></td>
+        <td><%= article.category.name %></td>
+        <td><%= article.title %></td>
+        <td><%= article.description %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to '新規記事', new_admin_article_path %>

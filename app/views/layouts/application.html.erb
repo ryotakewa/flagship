@@ -1,14 +1,60 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>FlagshipBlogRails</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title><%= Config::Application.config.title %></title>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
 
-<%= yield %>
-
-</body>
+    <% if Config::Whitelist.matches?(request) %>
+      <% if admin_signed_in? %>
+        <div class="adminMenu">
+          <div>
+            <%= link_to 'カテゴリ'  , admin_categories_path     , { method: :get   , class: "button" } %>
+            <%= link_to '記事'      , admin_articles_path       , { method: :get   , class: "button" } %>
+            <%= link_to 'ログアウト', destroy_admin_session_path, { method: :delete, class: "button" } %>
+          </div>
+        </div>
+      <% else %>
+        <div class="adminMenu">
+          <div>
+            <%= link_to 'ログイン', new_admin_session_path, { method: :get, class: "button" } %>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  
+    <header>
+      <div>
+        <div>
+          <div class="header">
+            <%= link_to root_url do %>
+              <h1><%= Config::Application.config.title %></h1>
+            <% end %>
+          </div>
+          <div class="headerMenu">
+            <% Category.where.not(category_id: nil).each do |category| %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </header>
+  
+    <div class="container">
+      <div>
+        <%= yield %>
+      </div>
+    </div>
+  
+    <footer>
+      <div>
+        <p><%= Config::Application.config.footer %></p>
+      </div>
+    </footer>
+  
+  </body>
 </html>

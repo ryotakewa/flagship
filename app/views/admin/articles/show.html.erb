@@ -1,0 +1,20 @@
+<div class="field">
+  <dl>
+    <dt>ID</dt>
+    <dd><%= @article.id %></dd>
+    <dt>カテゴリ</dt>
+    <dd><%= @article.category.name %></dd>
+    <dt>タイトル</dt>
+    <dd><%= @article.title %></dd>
+    <dt>説明</dt>
+    <dd><%= @article.description %></dd>
+    <dt>テキスト</dt>
+    <dd><%= @article.text %></dd>
+    <dt>写真</dt>
+    <dd><%= @article.photo %></dd>
+  </dl>
+</div>
+<div class="sp">
+  <%= link_to '一覧', admin_articles_path %>
+  <%= link_to '編集', edit_admin_article_path(@article) %>
+</div>

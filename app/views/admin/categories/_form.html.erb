@@ -1,0 +1,35 @@
+<%= form_for([:admin, @category]) do |f| %>
+  <% if @category.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@category.errors.count, "error") %> prohibited this admin_category from being saved:</h2>
+
+      <ul>
+      <% @category.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    
+    <div class="field">
+      <%= f.label 'カテゴリ', { class: "required" } %>
+      <%= f.select :category_id, Category.where(category_id: nil).map{|t| [t.name, t.id]}, selected: @category.category_id, prompt: "" %>
+    </div>
+    
+    <div class="field">
+      <%= f.label '名称', { class: "required" } %>
+      <%= f.text_field :name %>
+    </div>
+
+    <div class="sp">
+      <% if @category.new_record? %>
+        <%= link_to '一覧', admin_categories_path %>
+      <% else %>
+        <%= link_to '詳細', admin_category_path(@category) %>
+      <% end %>
+      <%= f.submit '登録' %>
+    </div>
+
+<% end %>

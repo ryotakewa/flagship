@@ -1,0 +1,292 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+///////////////////////////////
+// Variables
+///////////////////////////////
+
+$red:   #ff0000;
+$black: #000000;
+$gray:  #585858;
+$white: #ffffff;
+
+$padding: 4px;
+$margin: 4px;
+
+$fontSizeSmallest: 0.9rem;
+$fontSizeSmall:    1.0rem;
+$fontSize:         1.2rem;
+$fontSizeLarge:    1.6rem;
+
+$width: 1024px;
+$responsive: 1023px;
+
+@mixin flex {
+  display: flex;
+}
+
+@mixin flexColumn {
+  @include flex;
+  flex-direction: column;
+}
+
+@mixin flexColumnReverse {
+  @include flex;
+  flex-direction: column-reverse;
+}
+
+@mixin flexColumnCenter {
+  @include flexColumn;
+  align-items: center;
+}
+
+@mixin max-screen($break-point) {
+  @media screen and (max-width: $break-point) {
+    @content;
+  }
+}
+@mixin min-screen($break-point) {
+  @media screen and (min-width: $break-point) {
+    @content;
+  }
+}
+
+@mixin screen($break-point-min, $break-point-max){
+  @media screen and (min-width: $break-point-min) and (max-width: $break-point-max){
+    @content;
+  }
+}
+
+@mixin width100 {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+@mixin transition {
+  transition: all .3s;
+}
+
+///////////////////////////////
+// Common
+///////////////////////////////
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  @include flexColumnCenter;
+  > div {
+    width: $width;
+    @include max-screen($responsive) {
+      @include width100;
+      padding: 0 $padding;
+    }
+    > div {
+      @include flex;
+      .header {
+      }
+      .headerMenu {
+        margin-left: auto;
+        a {
+          maring: 0 $margin;
+        }
+      }
+    }
+  }
+}
+
+footer {
+  @include flexColumnCenter;
+  text-align: center;
+  div {
+    width: $width;
+    @include max-screen($responsive) {
+      @include width100;
+      padding: 0 $padding;
+    }
+  }
+}
+
+h1 {
+  font-size: $fontSizeLarge;
+}
+
+h2 {
+  font-size: $fontSize;
+}
+
+input[type="text"], select {
+  font-size: $fontSize;
+}
+
+input[type="submit"] {
+  font-size: $fontSizeLarge;
+}
+
+p {
+  font-size: $fontSizeSmallest;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  &:active {
+    text-decoration: none;
+  }
+  
+  &:visited {
+    text-decoration: none;
+  }
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: $margin 0;
+  box-sizing: border-box;
+  tr {
+    @include transition;
+    &:hover {
+      background-color: $gray;
+      color: $white;
+    }
+  }
+  th {
+    background-color: $black;
+    color: $white;
+    padding: $padding;
+    border: 1px solid $black;
+  }
+  td {
+    padding: $padding;
+    border: 1px solid $black;
+  }
+}
+
+form {
+  @include width100;
+  margin: $margin 0;
+}
+
+.actions {
+  input[type="submit"] {
+  }
+}
+
+.field {
+  @include flexColumn;
+  margin: $margin 0;
+
+  label {
+    padding: $padding 0 $padding $padding;
+  }
+
+  input {
+    padding: $padding;
+  }
+
+  textarea {
+    padding: $padding;
+  }
+
+  dl {
+
+  }
+
+  dt {
+    border-left: solid 3px $black;
+    padding: $padding;
+    margin: $margin 0;
+  }
+
+  dd {
+    padding: $padding;
+    margin: $margin 0;
+  }
+
+  .required {
+    &:after {
+      content: "*";
+      margin-left: $margin;
+      color: $red;
+    }
+  }
+  .markdown {
+    &:after {
+      content: "マークダウン形式";
+      margin-left: $margin;
+      color: $red;
+    }
+  }
+}
+
+.container {
+  @include flexColumnCenter;
+  div {
+    width: $width;
+    @include max-screen($responsive) {
+      @include width100;
+      padding: 0 $padding;
+    }
+  }
+}
+
+.adminMenu {
+  @include flexColumnCenter;
+  background-color: $black;
+  color: $white;
+  > div {
+    @include flex;
+    width: $width;
+    padding: $padding 0;
+    a {
+      margin: 0 $margin;
+      &:last-child {
+        margin-left: auto;
+      }
+    }
+    @include max-screen($responsive) {
+      @include width100;
+    }
+  }
+  .button {
+    min-width: 96px;
+    display: inline-block;
+    padding: $padding;
+    color: inherit;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    @include transition;
+    &:hover {
+      opacity: .6;
+    }
+  }
+}
+
+.sp {
+  @include flex;
+  margin: $margin 0;
+  *:last-child {
+    margin-left: auto;
+  }
+}
+
+///////////////////////////////
+// Controller
+///////////////////////////////
