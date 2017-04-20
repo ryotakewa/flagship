@@ -1,20 +1,29 @@
 <div class="field">
-  <dl>
-    <dt>ID</dt>
-    <dd><%= @article.id %></dd>
-    <dt>カテゴリ</dt>
-    <dd><%= @article.category.name %></dd>
-    <dt>タイトル</dt>
-    <dd><%= @article.title %></dd>
-    <dt>説明</dt>
-    <dd><%= @article.description %></dd>
-    <dt>テキスト</dt>
-    <dd><%= @article.text %></dd>
-    <dt>写真</dt>
-    <dd><%= @article.photo %></dd>
-  </dl>
+  <label>ID</label>
+  <%= @article.id %>
 </div>
-<div class="sp">
-  <%= link_to '一覧', admin_articles_path %>
-  <%= link_to '編集', edit_admin_article_path(@article) %>
+<div class="field">
+  <label>カテゴリ</label>
+  <%= @article.category.name %>
+</div>
+<div class="field">
+  <label>タイトル</label>
+  <%= @article.title %>
+</div>
+<div class="field">
+  <label>説明</label>
+  <%= @article.description %>
+</div>
+<div class="field">
+  <label>写真</label>
+  <%= @article.photo %>
+</div>
+<div class="field">
+  <label>テキスト</label>
+  <%= markdown(@article.text) %>
+</div>
+
+<div class="vs">
+  <%= link_to '一覧', admin_articles_path, { class: "btn btn-default" } %>
+  <%= link_to '編集', edit_admin_article_path(@article), { class: "btn btn-default" } %>
 </div>

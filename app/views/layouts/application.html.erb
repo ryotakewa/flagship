@@ -4,12 +4,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><%= Config::Application.config.title %></title>
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
     <%= csrf_meta_tags %>
   </head>
   <body>
-
     <% if Config::Whitelist.matches?(request) %>
       <% if admin_signed_in? %>
         <div class="adminMenu">
@@ -27,7 +26,6 @@
         </div>
       <% end %>
     <% end %>
-  
     <header>
       <div>
         <div>
@@ -43,18 +41,15 @@
         </div>
       </div>
     </header>
-  
     <div class="container">
       <div>
         <%= yield %>
       </div>
     </div>
-  
     <footer>
       <div>
         <p><%= Config::Application.config.footer %></p>
       </div>
     </footer>
-  
   </body>
 </html>

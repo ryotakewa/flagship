@@ -47,3 +47,7 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'devise'
+gem 'redcarpet'
+gem 'bootstrap-sass'
+gem 'kaminari'
+gem 'autoprefixer-rails'

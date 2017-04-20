@@ -13,6 +13,8 @@
  *= require_tree .
  *= require_self
  */
+@import "bootstrap-sprockets";
+@import "bootstrap-custom";
 
 ///////////////////////////////
 // Variables
@@ -122,62 +124,6 @@ footer {
   }
 }
 
-h1 {
-  font-size: $fontSizeLarge;
-}
-
-h2 {
-  font-size: $fontSize;
-}
-
-input[type="text"], select {
-  font-size: $fontSize;
-}
-
-input[type="submit"] {
-  font-size: $fontSizeLarge;
-}
-
-p {
-  font-size: $fontSizeSmallest;
-}
-
-a {
-  text-decoration: none;
-  color: inherit;
-  &:active {
-    text-decoration: none;
-  }
-  
-  &:visited {
-    text-decoration: none;
-  }
-}
-
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: $margin 0;
-  box-sizing: border-box;
-  tr {
-    @include transition;
-    &:hover {
-      background-color: $gray;
-      color: $white;
-    }
-  }
-  th {
-    background-color: $black;
-    color: $white;
-    padding: $padding;
-    border: 1px solid $black;
-  }
-  td {
-    padding: $padding;
-    border: 1px solid $black;
-  }
-}
-
 form {
   @include width100;
   margin: $margin 0;
@@ -202,21 +148,6 @@ form {
 
   textarea {
     padding: $padding;
-  }
-
-  dl {
-
-  }
-
-  dt {
-    border-left: solid 3px $black;
-    padding: $padding;
-    margin: $margin 0;
-  }
-
-  dd {
-    padding: $padding;
-    margin: $margin 0;
   }
 
   .required {
@@ -279,11 +210,23 @@ form {
   }
 }
 
-.sp {
+.vs {
   @include flex;
   margin: $margin 0;
   *:last-child {
     margin-left: auto;
+  }
+}
+
+///////////////////////////////
+// Bootstrap
+///////////////////////////////
+
+.carousel-inner {
+  .item {
+    img {
+      width: 100%;
+    }
   }
 }
 

@@ -23,13 +23,13 @@
       <%= f.text_field :name %>
     </div>
 
-    <div class="sp">
+    <div class="vs">
       <% if @category.new_record? %>
-        <%= link_to '一覧', admin_categories_path %>
+        <%= link_to '一覧', admin_categories_path, { class: "btn btn-default" } %>
       <% else %>
-        <%= link_to '詳細', admin_category_path(@category) %>
+        <%= link_to '詳細', admin_category_path(@category), { class: "btn btn-default" } %>
       <% end %>
-      <%= f.submit '登録' %>
+      <%= f.submit "登録", { class: "btn btn-default" } %>
     </div>
 
 <% end %>

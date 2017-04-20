@@ -1,2 +1,38 @@
+<% if has_files_from_public?("/images/index/main/") %>
+  <div id="carousel-example" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+      <li data-target="#carousel-example" data-slide-to="0" class="active"></li>
+      <li data-target="#carousel-example" data-slide-to="1"></li>
+    </ol>
+    <div class="carousel-inner">
+      <% get_files_from_public("/images/index/main/").each_with_index do |f, index| %>
+        <div class="item <%= 'active' if index == 0 %>">
+          <%= image_tag f %>
+        </div>
+      <% end %>
+    </div>
+    <a class="left carousel-control" href="#carousel-example" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+    </a>
+    <a class="right carousel-control" href="#carousel-example" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+    </a>
+  </div>
+<% end %>
+
+
 <% @articles.each do |article| %>
+  <section class="article">
+    <%= link_to article_path(article) do %>
+      <h1><%= article.title %></h1>
+      <div class="vs">
+        <time><%= article.created_at.strftime("%Y/%m/%d") %></time>
+        <span><%= article.category.name %></span>
+      </div>
+      <% if article.photo.present? %>
+        <%= image_tag article.photo_path %>
+      <% end %>
+      <p><%= article.description %></p>
+    <% end %>
+  </section>
 <% end %>

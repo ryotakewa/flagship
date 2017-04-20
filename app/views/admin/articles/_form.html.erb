@@ -38,13 +38,13 @@
       <%= f.text_area :text , { rows: 10 } %>
     </div>
 
-    <div class="sp">
+    <div class="vs">
       <% if @article.new_record? %>
-        <%= link_to '一覧', admin_articles_path %>
+        <%= link_to '一覧', admin_articles_path, { class: "btn btn-default" } %>
       <% else %>
-        <%= link_to '詳細', admin_article_path(@article) %>
+        <%= link_to '詳細', admin_article_path(@article), { class: "btn btn-default" } %>
       <% end %>
-      <%= f.submit '登録' %>
+      <%= f.submit "登録", { class: "btn btn-default" } %>
     </div>
 
   </div>
